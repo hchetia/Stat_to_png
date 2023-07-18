@@ -1,13 +1,15 @@
-#VisEase-v1.0
-#Author- Hasnahana Chetia
-#Date 17-07-2023
-
 import os
 import matplotlib.pyplot as plt
 import pysam
 
-# Load the BAM file
-bam_filename = "sorted_7400_1740_filtered_250.sorted.bam"
+# Prompt the user for the input BAM file name
+bam_filename = input("Enter the input BAM file name: ")
+
+# Check if file exists
+if not os.path.isfile(bam_filename):
+    print(f"File '{bam_filename}' does not exist.")
+    exit(1)
+
 bam_file = pysam.AlignmentFile(bam_filename, "rb")
 
 # Split the filename and extension
@@ -36,4 +38,3 @@ if alignment_lengths:
     print(f"Plot saved as {output_file}.")
 else:
     print("No alignment lengths collected, skipping plot generation.")
-
